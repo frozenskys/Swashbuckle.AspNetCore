@@ -1,0 +1,86 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.0</TargetFramework>
+    <WarningsAsErrors>true</WarningsAsErrors>
+    <AssemblyName>Swashbuckle.AspNetCore.IntegrationTests</AssemblyName>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">$(PackageTargetFallback);dnxcore50;netstandard1.6;portable-net451+win8</PackageTargetFallback>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="**\*.cs" />
+    <EmbeddedResource Include="**\*.resx" />
+    <EmbeddedResource Include="compiler\resources\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebSites\Basic\Basic.csproj" />
+    <ProjectReference Include="..\WebSites\CustomIndexHtml\CustomIndexHtml.csproj" />
+    <ProjectReference Include="..\WebSites\CustomUiConfig\CustomUiConfig.csproj" />
+    <ProjectReference Include="..\WebSites\GenericControllers\GenericControllers.csproj" />
+    <ProjectReference Include="..\WebSites\MultipleVersions\MultipleVersions.csproj" />
+    <ProjectReference Include="..\WebSites\OAuth2Integration\OAuth2Integration.csproj" />
+    <ProjectReference Include="..\..\src\Swashbuckle.AspNetCore.SwaggerGen\Swashbuckle.AspNetCore.SwaggerGen.csproj">
+      <FromP2P>true</FromP2P>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Swashbuckle.AspNetCore.SwaggerUi\Swashbuckle.AspNetCore.SwaggerUi.csproj">
+      <FromP2P>true</FromP2P>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Swashbuckle.AspNetCore.Swagger\Swashbuckle.AspNetCore.Swagger.csproj">
+      <FromP2P>true</FromP2P>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
+    <Reference Include="System.Xml">
+      <FromP2P>true</FromP2P>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk">
+      <Version>15.0.0-preview-20161024-02</Version>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio">
+      <Version>2.2.0-beta4-build1194</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc">
+      <Version>1.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.TestHost">
+      <Version>1.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.Platforms">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Moq">
+      <Version>4.6.25-*</Version>
+    </PackageReference>
+    <PackageReference Include="xunit">
+      <Version>2.2.0-beta4-build3444</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">
+    <PackageReference Include="Microsoft.NETCore.App">
+      <Version>1.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.Process">
+      <Version>4.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Diagnostics.TraceSource">
+      <Version>4.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+  </PropertyGroup>
+
+</Project>

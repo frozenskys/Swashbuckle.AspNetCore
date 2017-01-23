@@ -92,9 +92,9 @@ Task bower-restore {
 Task dotnet-build {
 
     if ($VersionSuffix.Length -gt 0) {
-        exec { dotnet build **\project.json -c $BuildConfiguration --version-suffix $VersionSuffix }
+        exec { dotnet build -c $BuildConfiguration --version-suffix $VersionSuffix }
     } else {
-        exec { dotnet build **\project.json -c $BuildConfiguration }
+        exec { dotnet build -c $BuildConfiguration }
     }
 }
 
@@ -143,9 +143,9 @@ Task dotnet-pack {
 
     $NugetLibraries | ForEach-Object {
 
-        $library = $_
+        $library = $_ + "/" + $_.replace("src/","") + ".csproj"
         $libraryOutput = Join-Path $ArtifactsPath $ArtifactsPathNuGet
-
+        $libraryOutput = "../../" + $libraryOutput
         Write-Host ""
         Write-Host "Packaging $library to $libraryOutput"
         Write-Host ""

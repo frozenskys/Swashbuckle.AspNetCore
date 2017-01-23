@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+
+  <PropertyGroup>
+    <Description>Swagger tools for documenting API's built on ASP.NET Core</Description>
+    <TargetFrameworks>net451;netstandard1.6</TargetFrameworks>
+    <RuntimeIdentifiers>win7-x64;win7-x86;osx.10.10-x64;osx.10.11-x64;ubuntu.14.04-x64;ubuntu.16.04-x64;centos.7-x64;rhel.7.2-x64;debian.8-x64;fedora.23-x64;opensuse.13.2-x64</RuntimeIdentifiers>
+    <AssemblyName>Swashbuckle.AspNetCore</AssemblyName>
+    <PackageTags>swagger;documentation;discovery;help;webapi;aspnet;aspnetcore</PackageTags>
+    <PackageProjectUrl>https://github.com/domaindrivendev/Swashbuckle.AspNetCore</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/domaindrivendev/Swashbuckle.AspNetCore/master/LICENSE</PackageLicenseUrl>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);dnxcore50;portable-net451+win8</PackageTargetFallback>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="**\*.cs" />
+    <EmbeddedResource Include="**\*.resx" />
+    <EmbeddedResource Include="compiler\resources\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Swashbuckle.AspNetCore.Swagger\Swashbuckle.AspNetCore.Swagger.csproj" />
+    <ProjectReference Include="..\Swashbuckle.AspNetCore.SwaggerGen\Swashbuckle.AspNetCore.SwaggerGen.csproj" />
+    <ProjectReference Include="..\Swashbuckle.AspNetCore.SwaggerUi\Swashbuckle.AspNetCore.SwaggerUi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
+    <Reference Include="System.Xml">
+      <FromP2P>true</FromP2P>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NETStandard.Library">
+      <Version>1.6.0</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+  </PropertyGroup>
+
+</Project>
